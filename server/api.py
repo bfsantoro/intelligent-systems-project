@@ -39,13 +39,10 @@ def classify_product(new_product):
     x_text = np.array(new_product["concatenated_tags"])
     x_text = x_text.reshape(1,-1)
     x_text_encoded = oh_encoder.transform(x_text)
-    print(f"Resultado encoded: {x_text_encoded}")
 
     x_test = np.concatenate((x_values_scaled, x_text_encoded), axis=1)
     y_test = model.predict(x_test)
     y_test_decoded = encoder.inverse_transform(y_test)[0]
-    print(y_test)
-    print(y_test_decoded)
     return y_test_decoded
 
 DATASET_PATH = os.environ['DATASET_PATH']
